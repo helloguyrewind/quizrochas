@@ -26,23 +26,23 @@
   <script>
     const questions = [
       {
-        question: "Quais rochas são originadas de materiais erodidos de outras rochas e sofreram sedimentação?",
-        answer: "sedimentares"
+        question: "Sedimentares",
+        answer: "Originadas de materiais erodidos de outras rochas e sofreram sedimentação."
       },
       {
-        question: "Que tipo de rochas resulta da transformação de rochas magmáticas e sedimentares?",
-        answer: "metamórficas"
+        question: "Metamórficas",
+        answer: "Resultado da transformação de rochas magmáticas e sedimentares."
       },
       {
-        question: "Que tipo de rochas se forma pelo resfriamento do magma?",
-        answer: "magmáticas"
+        question: "Magmáticas",
+        answer: "Formadas pelo resfriamento do magma."
       }
     ];
 
     let current = 0;
 
     function loadQuestion() {
-      document.getElementById('question').textContent = questions[current].question;
+      document.getElementById('question').textContent = `Explique: ${questions[current].question}`;
       document.getElementById('answer').value = '';
       document.getElementById('feedback').textContent = '';
     }
