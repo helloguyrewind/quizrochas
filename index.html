@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz sobre Rochas</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; background: #f0f0f0; }
+    .quiz-container { background: white; padding: 2rem; border-radius: 10px; max-width: 600px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .question { margin-bottom: 1rem; font-size: 1.2rem; }
+    input[type="text"] { width: 100%; padding: 0.5rem; font-size: 1rem; }
+    button { margin-top: 1rem; padding: 0.5rem 1rem; font-size: 1rem; cursor: pointer; }
+    .feedback { margin-top: 1rem; font-weight: bold; }
+    .correct { color: green; }
+    .incorrect { color: red; }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="question" id="question">Carregando pergunta...</div>
+    <input type="text" id="answer" placeholder="Digite sua resposta aqui...">
+    <button onclick="checkAnswer()">Responder</button>
+    <div class="feedback" id="feedback"></div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Quais rochas são originadas de materiais erodidos de outras rochas e sofreram sedimentação?",
+        answer: "sedimentares"
+      },
+      {
+        question: "Que tipo de rochas resulta da transformação de rochas magmáticas e sedimentares?",
+        answer: "metamórficas"
+      },
+      {
+        question: "Que tipo de rochas se forma pelo resfriamento do magma?",
+        answer: "magmáticas"
+      }
+    ];
+
+    let current = 0;
+
+    function loadQuestion() {
+      document.getElementById('question').textContent = questions[current].question;
+      document.getElementById('answer').value = '';
+      document.getElementById('feedback').textContent = '';
+    }
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+      const correctAnswer = questions[current].answer.toLowerCase();
+
+      if (userAnswer === correctAnswer) {
+        document.getElementById('feedback').textContent = 'Correto!';
+        document.getElementById('feedback').className = 'feedback correct';
+        current++;
+        if (current < questions.length) {
+          setTimeout(loadQuestion, 1000);
+        } else {
+          document.getElementById('question').textContent = 'Parabéns! Você completou o quiz.';
+          document.getElementById('answer').style.display = 'none';
+          document.querySelector('button').style.display = 'none';
+        }
+      } else {
+        document.getElementById('feedback').textContent = 'Errado! Tente novamente.';
+        document.getElementById('feedback').className = 'feedback incorrect';
+      }
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
