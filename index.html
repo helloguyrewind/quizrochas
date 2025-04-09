@@ -27,15 +27,15 @@
     const questions = [
       {
         question: "Sedimentares",
-        answer: "Originadas de materiais erodidos de outras rochas e sofreram sedimentação."
+        keywords: ["materiais erodidos", "outras rochas", "sedimentação"]
       },
       {
         question: "Metamórficas",
-        answer: "Resultado da transformação de rochas magmáticas e sedimentares."
+        keywords: ["transformação", "rochas magmáticas", "rochas sedimentares"]
       },
       {
         question: "Magmáticas",
-        answer: "Formadas pelo resfriamento do magma."
+        keywords: ["resfriamento", "magma"]
       }
     ];
 
@@ -49,9 +49,10 @@
 
     function checkAnswer() {
       const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
-      const correctAnswer = questions[current].answer.toLowerCase();
+      const keywords = questions[current].keywords;
+      const match = keywords.every(word => userAnswer.includes(word));
 
-      if (userAnswer === correctAnswer) {
+      if (match) {
         document.getElementById('feedback').textContent = 'Correto!';
         document.getElementById('feedback').className = 'feedback correct';
         current++;
